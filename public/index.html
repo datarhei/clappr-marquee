@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" charset="utf-8" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../dist/marquee.js"></script>
+	<title>clappr-marquee-plugin Test Page</title>
+	<script type="text/javascript" charset="utf-8">
+	window.onload = function() {
+		var player = new Clappr.Player({
+			source: 'https://ch-fra-n8.livespotting.com/vpu/qvciam2t/nsav1jnq_720.m3u8',
+			parentId: '#player',
+
+			plugins: [Marquee],
+
+			marqueeConfig: {
+				text: 'Lorem ipsum [link](https://www.example.com) ...',
+				speed: 50,
+				fps: 60,
+				direction: 'left',
+				style: {
+					backgroundColor: 'green',
+					top: '20px'
+				},
+				pauseOnHover: true,
+			},
+
+			width: 640, height: 360,
+			hideMediaControl: false,
+			autoPlay: false
+		});
+	}
+	</script>
+</head>
+<body>
+	<div align="center">
+		<div id="player"></div>
+	</div>
+</body>
+</html>
