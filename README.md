@@ -76,3 +76,16 @@ Option | Default | Description
 `pauseOnHover` | `true` | Whether the text should stop scrolling if the mouse hovers it.
 `style` | `{}` | CSS styles in DOM syntax for styling the marquee area.
 
+## Develop
+
+Create updated dist files:
+
+```
+npm run build
+```
+
+or for a minified build:
+
+``` 
+npm run release
+```
