@@ -3,7 +3,7 @@
 Displays a marquee text scrolling from right to left or vice-versa. The marquee is only displayed when the player is
 playing and will hide when the player is stopped.
 
-![Snapshot](../master/screenshot.jpg)
+![Snapshot](../main/screenshot.jpg)
 
 ## TODO
 
