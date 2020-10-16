@@ -1,50 +1,61 @@
-import { Events, UICorePlugin, $ } from 'clappr';
+import { Events, UIContainerPlugin, $ } from 'clappr';
 import './public/style.scss';
 
-const VERSION = '0.2.0';
+export default class Marquee extends UIContainerPlugin {
+	constructor(container) {
+		super(container);
+		this.configure();
+	}
 
-export default class Marquee extends UICorePlugin {
+	get name() {
+		return 'marquee';
+	}
+
+	get attributes() {
+		return {
+			'class': this.name,
+			'data-marquee': ''
+		};
+	}
+
+	get events() {
+		return {};
+	}
+
 	bindEvents() {
-		this.listenTo(this.core, Events.CORE_ACTIVE_CONTAINER_CHANGED, () => {
-			this.core.activeContainer.$el.append(this.el);
+		this.listenTo(this.container, Events.CONTAINER_MEDIACONTROL_SHOW, () => {
+			if (this.cfg && this.cfg.position === 'bottom') {
+				const offset = 2 * $('.media-control-layer').height();
 
-			this.listenTo(this.core.activeContainer, Events.CONTAINER_MEDIACONTROL_SHOW, () => {
-				if (this.cfg && this.cfg.position === 'bottom') {
-					const offset = 2 * $('.media-control-layer').height();
+				const currentOffset = parseInt(this.$el.css('bottom'));
 
-					const currentOffset = parseInt(this.$el.css('bottom'));
-
-					if (currentOffset < offset) {
-						this.$el.css('bottom', offset + 'px');
-					}
+				if (currentOffset < offset) {
+					this.$el.css('bottom', offset + 'px');
 				}
-			});
-
-			this.listenTo(this.core.activeContainer, Events.CONTAINER_MEDIACONTROL_HIDE, () => {
-				if (this.cfg && this.cfg.position === 'bottom') {
-					this.$el.css('bottom', this.cfg.offset);
-				}
-			});
+			}
+		});
+		this.listenTo(this.container, Events.CONTAINER_MEDIACONTROL_HIDE, () => {
+			if (this.cfg && this.cfg.position === 'bottom') {
+				this.$el.css('bottom', this.cfg.offset);
+			}
+		});
+		this.listenTo(this.container, Events.CONTAINER_OPTIONS_CHANGE, this.configure);
+		this.listenTo(this.container, Events.CONTAINER_RESIZE, () => {
+			this.pause();
+			this.start(true);
+		});
+		this.listenTo(this.container, Events.CONTAINER_PLAY, () => {
+			this.show();
+			this.start(true);
 		});
 
-		this.listenToOnce(this.core, Events.CORE_READY, this.onCoreReady);
+		this.listenTo(this.container, Events.CONTAINER_STOP, () => {
+			this.hide();
+			this.pause();
+		});
 	}
 
-	destroy() {
-		this.$el.remove();
-	}
-
-	enable() {
-		this.show();
-		this.start(true);
-	}
-
-	disable() {
-		this.hide();
-		this.pause();
-	}
-
-	onCoreReady() {
+	configure() {
 		this.cfg = {
 			text: '',
 			speed: 10,
@@ -58,7 +69,7 @@ export default class Marquee extends UICorePlugin {
 			pauseOnHover: true
 		};
 
-		const cfg = this.core.options.marqueeConfig || {};
+		const cfg = this.options.marqueeConfig || {};
 
 		if ('text' in cfg) {
 			this.cfg.text = cfg.text;
@@ -118,45 +129,28 @@ export default class Marquee extends UICorePlugin {
 			textWidth: 0,
 		};
 
-		this.create();
-
-		this.listenTo(this.core, Events.CORE_RESIZE, () => {
-			this.pause();
-			this.start(true);
-		});
-
-		this.playback = this.core.getCurrentPlayback();
-		this.listenTo(this.playback, Events.PLAYBACK_PLAY, () => {
-			this.show();
-			this.start(true);
-		});
-
-		this.listenTo(this.playback, Events.PLAYBACK_STOP, () => {
-			this.hide();
-			this.pause();
-		});
+		this.render();
 	}
 
-	static get version() {
-		return VERSION;
+	destroy() {
+		this.$el.remove();
 	}
 
-	get name() {
-		return 'marquee';
+	enable() {
+		this.enabled = true;
+
+		this.show();
+		this.start(true);
 	}
 
-	get attributes() {
-		return {
-			'class': this.name,
-			'data-marquee': ''
-		};
+	disable() {
+		this.enabled = false;
+
+		this.hide();
+		this.pause();
 	}
 
-	get events() {
-		return {};
-	}
-
-	create() {
+	render() {
 		let container = document.createElement('div');
 		container.style.position = 'absolute';
 		container.style.width = '100%';
@@ -219,7 +213,7 @@ export default class Marquee extends UICorePlugin {
 		this.state.div = div;
 		this.state.container = container;
 
-		this.$el.html(this.state.container);
+		this.$el.append(this.state.container);
 
 		if (this.cfg.pauseOnHover == true) {
 			this.$el.mouseover(() => {
@@ -243,6 +237,9 @@ export default class Marquee extends UICorePlugin {
 		}
 
 		this.$el.css('height', this.cfg.height);
+
+		this.$el.hide();
+		this.container.$el.append(this.$el);
 	}
 
 	update() {
@@ -250,7 +247,7 @@ export default class Marquee extends UICorePlugin {
 	}
 
 	show() {
-		if (this.cfg.text.length == 0) {
+		if (this.enabled === true && this.cfg.text.length == 0) {
 			return;
 		}
 
@@ -284,6 +281,8 @@ export default class Marquee extends UICorePlugin {
 				this.state.position = this.state.windowWidth + this.state.textWidth;
 			}
 		}
+
+		this.update();
 
 		this.state.interval = setInterval(() => {
 			if (this.cfg.direction == 'right') {
