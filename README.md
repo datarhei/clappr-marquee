@@ -21,6 +21,8 @@ var player = new Clappr.Player({
 		text: 'Lorem ipsum ...',
 		speed: 10,
 		direction: 'left',
+		position: 'top',
+		offset: '10px',
 		pauseOnHover: true,
 	},
 
@@ -56,8 +58,10 @@ var player = new Clappr.Player({
 	marqueeConfig: {
 		text: 'Lorem ipsum [link](https://www.example.com) ...',
 		style: {
-			backgroundColor: 'green',
-			top: '20px'
+			backgroundColor: 'green'
+		},
+		linkStyle: {
+			textDecoration: 'none'
 		}
 	},
 
@@ -73,8 +77,11 @@ Option | Default | Description
 `speed` | `10` | Translation speed in pixel per second.
 `fps` | `25` | Animation loop resolution.
 `direction` | `left` | The direction in which the text will scroll. Either `left` or `right`.
+`position` | `top` | Where the marquee should be displayed. Either 'top' or 'bottom'.
+`offset` | `0px` | Distance to the top or bottom, depending on the value of `position`.
 `pauseOnHover` | `true` | Whether the text should stop scrolling if the mouse hovers it.
 `style` | `{}` | CSS styles in DOM syntax for styling the marquee area.
+`linkStyle` | `{}` | CSS styles in DOM syntax fot styling the links in the text.
 
 ## Develop
 

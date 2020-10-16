@@ -1,10 +1,8 @@
 .marquee[data-marquee] {
 	display: none;
 	position: absolute;
-	height: 20px;
 	width: 100%;
 	z-index: 998;
-	bottom: 0;
 	left: 0;
 	background-color: #ddd;
 	overflow: hidden;
