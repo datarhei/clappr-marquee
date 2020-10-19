@@ -1,5 +1,6 @@
 import { Events, UIContainerPlugin, $ } from 'clappr';
 import './public/style.scss';
+import icon from './public/icon.svg';
 
 export default class Marquee extends UIContainerPlugin {
 	constructor(container) {
@@ -305,5 +306,42 @@ export default class Marquee extends UIContainerPlugin {
 	pause() {
 		clearInterval(this.state.interval);
 		this.state.interval = null;
+	}
+
+	// PluginControl interface
+	pluginControl() {
+		let self = this;
+
+		if (this.cfg.text.length == 0) {
+			return null;
+		}
+
+		return {
+			icon: function() {
+				return icon;
+			},
+			name: function(lang = 'en') {
+				let name = 'Marquee';
+
+				switch (lang) {
+				case 'de': name = 'Lauftext'; break;
+				}
+
+				return name;
+			},
+			toggle: function() {
+				if (self.enabled === true) {
+					self.disable();
+				}
+				else {
+					self.enable();
+				}
+
+				return self.enabled;
+			},
+			toggled: function() {
+				return self.enabled;
+			}
+		};
 	}
 }
