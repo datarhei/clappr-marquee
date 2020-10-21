@@ -64,7 +64,7 @@ export default class Marquee extends UIContainerPlugin {
 			direction: 'left',
 			position: 'top',
 			offset: '0px',
-			height: '20px',
+			height: '90px',
 			style: {},
 			linkStyle: {},
 			pauseOnHover: true
@@ -210,6 +210,7 @@ export default class Marquee extends UIContainerPlugin {
 		}
 
 		container.append(div);
+		container.append(document.createElement('hr'));
 
 		this.state.div = div;
 		this.state.container = container;
