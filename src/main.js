@@ -1,6 +1,7 @@
 import { Events, UIContainerPlugin, $ } from 'clappr';
 import './public/style.scss';
 import icon from './public/icon.svg';
+import icon_disabled from './public/icon_disabled.svg';
 
 export default class Marquee extends UIContainerPlugin {
 	constructor(container) {
@@ -26,6 +27,7 @@ export default class Marquee extends UIContainerPlugin {
 	bindEvents() {
 		this.listenTo(this.container, Events.CONTAINER_MEDIACONTROL_SHOW, () => {
 			if (this.cfg && this.cfg.position === 'bottom') {
+				// Move the marquee up such that it will not be covered by the mediacontrol
 				const offset = 2 * $('.media-control-layer').height();
 
 				const currentOffset = parseInt(this.$el.css('bottom'));
@@ -57,6 +59,7 @@ export default class Marquee extends UIContainerPlugin {
 	}
 
 	configure() {
+		// Defaults
 		this.cfg = {
 			text: '',
 			speed: 10,
@@ -160,6 +163,7 @@ export default class Marquee extends UIContainerPlugin {
 		div.style.position = 'absolute';
 		div.style.left = '0px';
 
+		// Parse the text for links
 		let re = /\[([^\]]+)\]\(([^)]+)\)/g;
 
 		let matches = [];
@@ -273,6 +277,7 @@ export default class Marquee extends UIContainerPlugin {
 
 			// 0        t                            w+t      w+2t
 			// |--text--|------------player-----------|--text--|
+			//                           <- |--text--| ->
 			this.state.container.style.width = (this.state.windowWidth + 2 * this.state.textWidth) + 'px';
 			this.state.container.style.left = -this.state.textWidth + 'px';
 
@@ -319,7 +324,12 @@ export default class Marquee extends UIContainerPlugin {
 
 		return {
 			icon: function() {
-				return icon;
+				if (self.enabled === true) {
+					return icon;
+				}
+				else {
+					return icon_disabled;
+				}
 			},
 			name: function(lang = 'en') {
 				let name = 'Marquee';
