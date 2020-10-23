@@ -244,6 +244,7 @@ export default class Marquee extends UIContainerPlugin {
 
 		this.$el.css('height', this.cfg.height);
 
+		this.$el.css('opacity', 0);
 		this.$el.hide();
 		this.container.$el.append(this.$el);
 	}
@@ -258,9 +259,11 @@ export default class Marquee extends UIContainerPlugin {
 		}
 
 		this.$el.show();
+		this.$el.css('opacity', 1);
 	}
 
 	hide() {
+		this.$el.css('opacity', 0);
 		this.$el.hide();
 	}
 
