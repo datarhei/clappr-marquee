@@ -59,10 +59,10 @@ export default class Marquee extends UIContainerPlugin {
 		});
 
 		document.addEventListener('fullscreenchange', () => {
-			this.resize(); 
+			this.resize();
 		});
 		window.addEventListener('resize', () => {
-			this.resize(); 
+			this.resize();
 		});
 	}
 
@@ -75,7 +75,7 @@ export default class Marquee extends UIContainerPlugin {
 			direction: 'left',
 			position: 'top',
 			offset: '0px',
-			height: '90px',
+			height: '40px',
 			style: {},
 			linkStyle: {},
 			pauseOnHover: true
