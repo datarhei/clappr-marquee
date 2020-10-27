@@ -56,6 +56,21 @@ export default class Marquee extends UIContainerPlugin {
 			this.hide();
 			this.pause();
 		});
+
+		document.addEventListener('fullscreenchange', () => {
+			if (this.state.resize !== null) {
+				clearTimeout(this.state.resize);
+				this.state.resize = null;
+			}
+
+			this.hide();
+			this.pause();
+			this.state.resize = setTimeout(() => {
+				this.state.resize = null;
+				this.show();
+				this.start(true);
+			}, 1000);
+		});
 	}
 
 	configure() {
@@ -127,7 +142,8 @@ export default class Marquee extends UIContainerPlugin {
 			container: null,
 			div: null,
 			position: 0,
-			interval: null,
+			interval: null,	// ticker for the animation
+			resize: null, // delay recalculation of elements during resize
 			stepsize: this.cfg.speed / this.cfg.fps,
 			windowWidth: 0,
 			textWidth: 0,
@@ -274,7 +290,7 @@ export default class Marquee extends UIContainerPlugin {
 
 		if (recalculate === true) {
 			// The width of the player (w)
-			this.state.windowWidth = this.$el.width();
+			this.state.windowWidth = this.container.$el.width();
 			// The width of the text (t)
 			this.state.textWidth = this.state.div.clientWidth;
 
