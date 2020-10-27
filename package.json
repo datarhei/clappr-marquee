@@ -1,7 +1,7 @@
 {
 	"name": "marquee",
 	"description": "A marquee plugin for Clappr.",
-	"version": "0.2.4",
+	"version": "0.2.5",
 	"license": "MIT",
 	"repository": "datarhei/clappr-marquee-plugin",
 	"main": "dist/marquee.js",

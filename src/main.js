@@ -180,7 +180,8 @@ export default class Marquee extends UIContainerPlugin {
 		div.style.left = '0px';
 
 		// Parse the text for links
-		let re = /\[([^\]]+)\]\(([^)]+)\)/g;
+		var re = /(((https?:\/\/)|(www\.))[^\s]+)/g; // detect links by their prefix
+		//let re = /\[([^\]]+)\]\(([^)]+)\)/g; // detect links in markdown syntax
 
 		let matches = [];
 		let match = null;
@@ -192,7 +193,13 @@ export default class Marquee extends UIContainerPlugin {
 			}
 
 			let link = document.createElement('a');
-			link.href = match[2];
+			//link.href = match[2];
+			if (match[2] === 'www.') {
+				link.href = 'https://' + match[1];
+			}
+			else {
+				link.href = match[1];
+			}
 			link.setAttribute('target', '_blank');
 			for (let key in this.cfg.linkStyle) {
 				link.style[key] = this.cfg.linkStyle[key];
