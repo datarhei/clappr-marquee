@@ -59,18 +59,10 @@ export default class Marquee extends UIContainerPlugin {
 		});
 
 		document.addEventListener('fullscreenchange', () => {
-			if (this.state.resize !== null) {
-				clearTimeout(this.state.resize);
-				this.state.resize = null;
-			}
-
-			this.hide();
-			this.pause();
-			this.state.resize = setTimeout(() => {
-				this.state.resize = null;
-				this.show();
-				this.start(true);
-			}, 1000);
+			this.resize(); 
+		});
+		window.addEventListener('resize', () => {
+			this.resize(); 
 		});
 	}
 
@@ -254,6 +246,7 @@ export default class Marquee extends UIContainerPlugin {
 		this.state.div = div;
 		this.state.container = container;
 
+		this.$el.empty();
 		this.$el.append(this.state.container);
 
 		if (this.cfg.pauseOnHover == true) {
@@ -281,7 +274,28 @@ export default class Marquee extends UIContainerPlugin {
 
 		this.$el.css('opacity', 0);
 		this.$el.hide();
+
+		this.$el.remove();
 		this.container.$el.append(this.$el);
+	}
+
+	resize() {
+		if (!this.state) {
+			return;
+		}
+
+		if (this.state.resize !== null) {
+			clearTimeout(this.state.resize);
+			this.state.resize = null;
+		}
+
+		this.hide();
+		this.pause();
+		this.state.resize = setTimeout(() => {
+			this.state.resize = null;
+			this.show();
+			this.start(true);
+		}, 1000);
 	}
 
 	update() {
