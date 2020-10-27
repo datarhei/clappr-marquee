@@ -180,8 +180,6 @@ export default class Marquee extends UIContainerPlugin {
 		div.style.position = 'absolute';
 		div.style.left = '0px';
 
-		console.log(this.cfg.text.match(urlRegex({parens: true})));
-
 		// Parse the text for links
 		let re = urlRegex({
 			exact: false,

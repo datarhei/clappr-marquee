@@ -30,7 +30,7 @@ var player = new Clappr.Player({
 });
 ```
 
-The text will be displayed as is. You can add links by using the Markdown syntax:
+The text will be displayed as is. Links will be automatically detected and replaced by a real link:
 
 ```
 var player = new Clappr.Player({
@@ -39,7 +39,7 @@ var player = new Clappr.Player({
 	plugins: [Marquee],
 
 	marqueeConfig: {
-		text: 'Lorem ipsum [link](https://www.example.com) ...',
+		text: 'Lorem ipsum https://www.example.com ...',
 	},
 
 	...
@@ -56,7 +56,7 @@ var player = new Clappr.Player({
 	plugins: [Marquee],
 
 	marqueeConfig: {
-		text: 'Lorem ipsum [link](https://www.example.com) ...',
+		text: 'Lorem ipsum https://www.example.com ...',
 		style: {
 			backgroundColor: 'green'
 		},
