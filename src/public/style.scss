@@ -2,11 +2,19 @@
 	display: none;
 	position: absolute;
 	width: 100%;
-	z-index: 9;
+	z-index: 10000;
 	left: 0;
 	overflow: hidden;
 	white-space: nowrap;
-	transition: bottom .4s ease-out;
+	color: #fff;
+
+	a,
+	a:hover,
+	a:active,
+	a:focus {
+		text-decoration: underline;
+		color: #fff;
+	}
 
 	hr {
 		margin-top: 25px;
