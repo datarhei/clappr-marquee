@@ -1,4 +1,5 @@
 import { Events, UIContainerPlugin, $ } from 'clappr';
+import urlRegex from 'url-regex-safe';
 import './public/style.scss';
 import icon from './public/icon.svg';
 import icon_disabled from './public/icon_disabled.svg';
@@ -179,9 +180,21 @@ export default class Marquee extends UIContainerPlugin {
 		div.style.position = 'absolute';
 		div.style.left = '0px';
 
+		console.log(this.cfg.text.match(urlRegex({parens: true})));
+
 		// Parse the text for links
-		var re = /(((https?:\/\/)|(www\.))[^\s]+)/g; // detect links by their prefix
-		//let re = /\[([^\]]+)\]\(([^)]+)\)/g; // detect links in markdown syntax
+		let re = urlRegex({
+			exact: false,
+			strict: false,
+			auth: false,
+			localhost: false,
+			parens: false,
+			apostrophes: false,
+			trailingPeriod: false,
+			ipv4: false,
+			ipv6: false,
+			returnString: false,
+		});
 
 		let matches = [];
 		let match = null;
@@ -193,18 +206,19 @@ export default class Marquee extends UIContainerPlugin {
 			}
 
 			let link = document.createElement('a');
-			//link.href = match[2];
-			if (match[2] === 'www.') {
-				link.href = 'https://' + match[1];
+
+			if (/^https?:\/\//.test(match[0])) {
+				link.href = match[0];
 			}
 			else {
-				link.href = match[1];
+				link.href = 'https://' + match[0];
 			}
+
 			link.setAttribute('target', '_blank');
 			for (let key in this.cfg.linkStyle) {
 				link.style[key] = this.cfg.linkStyle[key];
 			}
-			link.append(document.createTextNode(match[1]));
+			link.append(document.createTextNode(match[0]));
 
 			matches.push({
 				element: link,

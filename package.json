@@ -1,7 +1,7 @@
 {
 	"name": "marquee",
 	"description": "A marquee plugin for Clappr.",
-	"version": "0.2.5",
+	"version": "0.2.6",
 	"license": "MIT",
 	"repository": "datarhei/clappr-marquee-plugin",
 	"main": "dist/marquee.js",
@@ -48,6 +48,7 @@
 		"webpack-dev-server": "^3.11.0"
 	},
 	"dependencies": {
-		"autoprefixer": "^9.8.6"
+		"autoprefixer": "^9.8.6",
+		"url-regex-safe": "^1.0.2"
 	}
 }
