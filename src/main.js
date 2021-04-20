@@ -1,4 +1,4 @@
-import { Events, UIContainerPlugin, $ } from 'clappr';
+import { Events, UIContainerPlugin, $ } from '@clappr/core';
 import urlRegex from 'url-regex-safe';
 import './public/style.scss';
 import icon from './public/icon.svg';
@@ -172,6 +172,9 @@ export default class Marquee extends UIContainerPlugin {
 		div.style.position = 'absolute';
 		div.style.left = '0px';
 
+		let matches = [];
+		let match = null;
+
 		// Parse the text for links
 		let re = urlRegex({
 			exact: false,
@@ -185,9 +188,6 @@ export default class Marquee extends UIContainerPlugin {
 			ipv6: false,
 			returnString: false,
 		});
-
-		let matches = [];
-		let match = null;
 
 		while ((match = re.exec(this.cfg.text)) !== null) {
 			// This is necessary to avoid infinite loops with zero-width matches
