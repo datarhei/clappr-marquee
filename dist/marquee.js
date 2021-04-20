@@ -1848,9 +1848,9 @@
   var css_248z = ".marquee[data-marquee] {\n  display: none;\n  position: absolute;\n  width: 100%;\n  z-index: 9000;\n  left: 0;\n  overflow: hidden;\n  white-space: nowrap;\n  color: #fff; }\n  .marquee[data-marquee] a,\n  .marquee[data-marquee] a:hover,\n  .marquee[data-marquee] a:active,\n  .marquee[data-marquee] a:focus {\n    text-decoration: underline;\n    color: #fff; }\n  .marquee[data-marquee] hr {\n    margin-top: 25px;\n    border-color: rgba(255, 255, 255, 0.5); }\n";
   styleInject(css_248z);
 
-  var _icon = "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" fill=\"white\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M12.75 3h-1.5L6.5 14h2.1l.9-2.2h5l.9 2.2h2.1L12.75 3zm-2.62 7L12 4.98 13.87 10h-3.74zm10.37 8l-3-3v2H5v2h12.5v2l3-3z\"/></svg>";
+  var _icon = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBmaWxsPSJ3aGl0ZSI+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMi43NSAzaC0xLjVMNi41IDE0aDIuMWwuOS0yLjJoNWwuOSAyLjJoMi4xTDEyLjc1IDN6bS0yLjYyIDdMMTIgNC45OCAxMy44NyAxMGgtMy43NHptMTAuMzcgOGwtMy0zdjJINXYyaDEyLjV2MmwzLTN6Ii8+PC9zdmc+';
 
-  var icon_disabled = "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" fill=\"#ADADAD\"><path d=\"M0 0h24v24H0z\" fill=\"none\"/><path d=\"M12.75 3h-1.5L6.5 14h2.1l.9-2.2h5l.9 2.2h2.1L12.75 3zm-2.62 7L12 4.98 13.87 10h-3.74zm10.37 8l-3-3v2H5v2h12.5v2l3-3z\"/></svg>";
+  var icon_disabled = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBmaWxsPSIjQURBREFEIj48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyLjc1IDNoLTEuNUw2LjUgMTRoMi4xbC45LTIuMmg1bC45IDIuMmgyLjFMMTIuNzUgM3ptLTIuNjIgN0wxMiA0Ljk4IDEzLjg3IDEwaC0zLjc0em0xMC4zNyA4bC0zLTN2Mkg1djJoMTIuNXYybDMtM3oiLz48L3N2Zz4=';
 
   var Marquee = /*#__PURE__*/function (_UIContainerPlugin) {
     _inherits(Marquee, _UIContainerPlugin);

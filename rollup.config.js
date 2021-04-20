@@ -41,7 +41,7 @@ const plugins = [
 	commonjs(),
 	nodeResolve({ browser: true, preferBuiltins: true }),
 	babel({ exclude: 'node_modules/**', babelHelpers: 'bundled' }),
-	svg(),
+	svg({ base64: true }),
 	json(),
 	postcss(postcssOptions),
 	dev && serve(servePluginOptions),
