@@ -64,6 +64,12 @@ const output = [
 		sourcemap: true,
 		plugins: terser(),
 		globals: { '@clappr/core': 'Clappr' },
+	},
+	minimize && {
+		file: 'dist/marquee.esm.js',
+		format: 'esm',
+		name: 'Marquee',
+		globals: { '@clappr/core': 'Clappr' },
 	}
 ];
 

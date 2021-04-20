@@ -3,6 +3,7 @@
 	"version": "0.2.9",
 	"description": "Marquee plugin for the Clappr project",
 	"main": "./dist/marquee.js",
+	"module": "./dist/marquee.esm.js",
 	"scripts": {
 		"bundle-check": "ANALYZE_BUNDLE=true rollup -c",
 		"release": "MINIMIZE=true rollup -c",
