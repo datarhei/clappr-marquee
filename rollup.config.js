@@ -69,7 +69,6 @@ const output = [
 		file: 'dist/marquee.esm.js',
 		format: 'esm',
 		name: 'Marquee',
-		globals: { '@clappr/core': 'Clappr' },
 	}
 ];
 

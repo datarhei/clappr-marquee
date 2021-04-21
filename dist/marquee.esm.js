@@ -1841,7 +1841,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ".marquee[data-marquee] {\n  display: none;\n  position: absolute;\n  width: 100%;\n  z-index: 9000;\n  left: 0;\n  overflow: hidden;\n  white-space: nowrap;\n  color: #fff; }\n  .marquee[data-marquee] a,\n  .marquee[data-marquee] a:hover,\n  .marquee[data-marquee] a:active,\n  .marquee[data-marquee] a:focus {\n    text-decoration: underline;\n    color: #fff; }\n  .marquee[data-marquee] hr {\n    margin-top: 25px;\n    border-color: rgba(255, 255, 255, 0.5); }\n";
+var css_248z = ".marquee[data-marquee] {\n  display: none;\n  position: absolute;\n  width: 100%;\n  z-index: 9000;\n  left: 0;\n  overflow: hidden;\n  white-space: nowrap;\n  color: #fff;\n}\n.marquee[data-marquee] a,\n.marquee[data-marquee] a:hover,\n.marquee[data-marquee] a:active,\n.marquee[data-marquee] a:focus {\n  text-decoration: underline;\n  color: #fff;\n}\n.marquee[data-marquee] hr {\n  margin-top: 25px;\n  border-color: rgba(255, 255, 255, 0.5);\n}";
 styleInject(css_248z);
 
 var _icon = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBmaWxsPSJ3aGl0ZSI+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMi43NSAzaC0xLjVMNi41IDE0aDIuMWwuOS0yLjJoNWwuOSAyLjJoMi4xTDEyLjc1IDN6bS0yLjYyIDdMMTIgNC45OCAxMy44NyAxMGgtMy43NHptMTAuMzcgOGwtMy0zdjJINXYyaDEyLjV2MmwzLTN6Ii8+PC9zdmc+';
