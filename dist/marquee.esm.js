@@ -1866,6 +1866,18 @@ var Marquee = /*#__PURE__*/function (_UIContainerPlugin) {
   }
 
   _createClass(Marquee, [{
+    key: "version",
+    get: function get() {
+      return "0.2.11";
+    }
+  }, {
+    key: "supportedVersion",
+    get: function get() {
+      return {
+        min: "0.4.18"
+      };
+    }
+  }, {
     key: "name",
     get: function get() {
       return 'marquee';

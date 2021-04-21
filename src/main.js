@@ -10,6 +10,9 @@ export default class Marquee extends UIContainerPlugin {
 		this.configure();
 	}
 
+	get version() { return VERSION; }
+	get supportedVersion() { return { min: CLAPPR_CORE_VERSION }; }
+
 	get name() {
 		return 'marquee';
 	}
