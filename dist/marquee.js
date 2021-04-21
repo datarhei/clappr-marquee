@@ -1872,7 +1872,7 @@
     _createClass(Marquee, [{
       key: "version",
       get: function get() {
-        return "0.2.11";
+        return "0.2.12";
       }
     }, {
       key: "supportedVersion",

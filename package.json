@@ -1,6 +1,6 @@
 {
-	"name": "marquee",
-	"version": "0.2.11",
+	"name": "clappr-marquee",
+	"version": "0.2.12",
 	"description": "Marquee plugin for the Clappr project",
 	"main": "./dist/marquee.js",
 	"module": "./dist/marquee.esm.js",
